@@ -1,0 +1,27 @@
+function garage(input) {
+    let garageList = {};
+    input.forEach(element => {
+        element = element.split(` - `);
+        let garaeNumber = element.shift();
+        if (!garageList.hasOwnProperty(garaeNumber)) {
+            garageList[garaeNumber] = [];
+        }
+        element.forEach(x => {
+            x = x.split(`, `);
+            garageList[garaeNumber].push(x);
+        });
+    })
+
+    for (let keys in garageList) {
+        console.log(`Garage № ${keys}`);
+        let listOfCar = garageList[keys];
+        for (let element of listOfCar) {
+            let toPrint = [];
+            element.forEach(x => {
+                let info = x.split(`: `).join(` - `);
+                toPrint.push(info);
+            })
+            console.log(`--- ${toPrint.join(`, `)}`);
+        }
+    }
+}
